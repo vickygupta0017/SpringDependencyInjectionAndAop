@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop = "http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="twitter" class="com.journaldev.spring.di.services.TwitterService"></bean>
+	<bean id="MyXMLApp" class="com.journaldev.spring.di.consumer.MyXMLApplication">
+		<property name="service" ref="twitter"></property>
+	</bean>
+	
+	
+	<bean id="beforeAdvice" class="com.spring.framework.aop.advisor.MyBeforeAdvisor"></bean>
+	
+	<!--    -->
+	<!--  <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="MyXMLApp"></property>
+        <property name="interceptorNames">
+        <list>
+        <value>beforeAdvice</value>
+        </list>
+        </property>
+    </bean> -->
+    
+    
+    <!-- For a pointcut method by name and different advisor bean  
+    
+     <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="MyXMLApp"></property>
+        <property name="interceptorNames">
+        <list>
+        <value>temporaryAdvisor</value>
+        </list>
+        </property>
+    </bean> 
+    <bean id="temporaryAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+	    <property name="pointcut" ref="testPointcut"></property>
+	    <property name="advice" ref="beforeAdvice"></property>
+    </bean>
+    <bean id="testPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+       <property name="mappedName" value="processMessage" />
+    </bean>
+    -->
+    
+    <!-- <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="MyXMLApp"></property>
+        <property name="interceptorNames">
+        <list>
+        <value>temporaryAdvisor</value>
+        </list>
+        </property>
+    </bean> -->
+    
+    
+    <!--   <bean id="temporaryAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+	    <property name="mappedName" value="processMessage"></property>
+	    <property name="advice" ref="beforeAdvice"></property>
+    </bean>-->
+    
+    
+      <!--   <bean id="temporaryAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+	    <property name="patterns">
+	    	<list>
+	    		<value>.*processMe.*</value>
+	    	</list>
+	    </property>
+	    <property name="advice" ref="beforeAdvice"></property>
+	    </bean>    
+	     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+     -->
+</beans>
