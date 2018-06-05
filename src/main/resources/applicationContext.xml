@@ -11,8 +11,8 @@
     http://www.springframework.org/schema/aop 
    http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<bean id="twitter" class="com.journaldev.spring.di.services.TwitterService"></bean>
-	<bean id="MyXMLApp" class="com.journaldev.spring.di.consumer.MyXMLApplication">
+	<bean id="twitter" class="com.spring.framework.services.TwitterService"></bean>
+	<bean id="MyXMLApp" class="com.spring.framework.consumer.MyXMLApplication">
 		<property name="service" ref="twitter"></property>
 	</bean>
 	
